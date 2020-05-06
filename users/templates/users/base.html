@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+
+    <link rel="shortcut icon" type="image/png" href="https://cdn.discordapp.com/attachments/330411242382688266/701894787204251749/favicon.png"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <meta name="description" content="One stop shop for mail tracking needs">
+    <meta name="keywords" content="Mail Track Tracking Software Free Premium">
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD9L8C2D34"></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LD9L8C2D34');
+
+
+
+    </script>
+
+    <style>
+    .grid-container {
+      display: grid;
+      grid-template-columns: auto auto auto;
+    <!--  background-color: #2196F3;-->
+      padding: 10px;
+    }
+    .grid-item {
+    <!--  background-color: rgba(255, 255, 255, 0.8);-->
+    <!--  border: 1px solid rgba(0, 0, 0, 0.8);-->
+      padding: 20px;
+      text-align: center;
+    }
+
+    .item2 {
+      padding-top: 70px;
+      paddin-bottom: 500px;
+    }
+
+    .item4 {
+      padding-top: 150px;
+      padding-bottom: 190px;
+    }
+    .hidden{visibility: hidden;}
+    a:link {
+      text-decoration: none;
+    }
+
+    </style>
+
+    {% block head %}
+    {% endblock%}
+
+</head>
+
+
+<body>
+<div class="container">
+
+
+    <!--NavBar-->
+
+
+    <section>
+        <div class="row">
+            <div class="col">
+                <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" style="background-color: #f2f2f2;">
+                    <a class="navbar-brand" href="{% url 'home' %}" style="padding-left: 30px;">MailTracc</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'home' %}">Home</a>
+                            </li>
+                            {% if user.is_authenticated %}
+                            {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'home' %}#features">Features</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'home' %}#pricing">Pricing</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                        <ul class="navbar-nav ml-auto" style="padding-right: 30px;">
+                            {% if user.is_authenticated %}
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ user.username }}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="{% url 'profile' %}">Settings</a>
+                                    <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                                </div>
+                            </li>
+                            {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-primary text-white shadow"
+                                   href="{% url 'register' %}">Signup</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!--    Content Block     -->
+
+
+    <section>
+        <div class="row">
+            <div class="col-11 item2 h-100">
+
+                {% if user.is_authenticated %}
+                {% if user.profile.signup_confirmation != True %}
+                <div class="alert alert-warning">Your account is not verified. <a class="alert-link" href="{% url 'activation_sent' %}">Click here</a> to resend to {{ user.profile.phonenumber }}</div>
+                {% endif %}
+                {% endif %}
+
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+
+
+
+                {% block content %}
+                {% endblock %}
+            </div>
+
+            <div class="col-1 item4">
+                <img class="hidden"
+                     src="//lh3.ggpht.com/fnbHmzCuSGCd6tpdIR1byKk75uSr19ezq9rHxaXmKancx07uM8DHPAiNZYnGDhmvpSr-HQY=w120"
+                     height="auto" alt="">
+            </div>
+        </div>
+    </section>
+
+
+</div>
+
+
+<!-- Footer -->
+
+
+<legend class="border-bottom mb-4"></legend>
+
+
+<footer class="container py-5">
+    <div class="row">
+        <div class="col-12 col-md">
+            <small>Alpha v1.3 <br>MailTracc LLC</small>
+            <small class="d-block mb-3 text-muted">&copy; 2020</small>
+        </div>
+        <div class="col-6 col-md">
+            <h5>Account</h5>
+            <ul class="list-unstyled text-small">
+                <li><a class="text-muted" href="{% url 'dashboard' %}">Dashboard</a></li>
+                <li><a class="text-muted" href="{% url 'billing' %}">Billing</a></li>
+                <li><a class="text-muted" href="{% url 'profile' %}">Profile</a></li>
+            </ul>
+        </div>
+        <div class="col-6 col-md">
+            <h5>Support</h5>
+            <ul class="list-unstyled text-small">
+                <li><a class="text-muted" href="#">FAQs</a></li>
+                <li><a class="text-muted" href="#">Knowledge Base</a></li>
+            </ul>
+        </div>
+        <div class="col-6 col-md">
+            <h5>Legal</h5>
+            <ul class="list-unstyled text-small">
+                <li><a class="text-muted" href="{% url 'privacy' %}">Privacy Policy</a></li>
+                <li><a class="text-muted" href="#">Terms of Service</a></li>
+                <li><a class="text-muted"
+                       href="https://app.termly.io/document/cookie-policy/390931cf-9fe8-4ddf-8d9f-52475bc734d5">Cookies</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</footer>
+<!-- Footer -->
+
+
+<!--Scripts-->
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.linearicons.com/free/1.0.0/svgembedder.min.js"></script>
+
+<script src="https://gtk1pgxlst25.statuspage.io/embed/script.js"></script>
+
+</body>
+</html>

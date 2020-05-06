@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="shortcut icon"
+          href="https://cdn.discordapp.com/attachments/330411242382688266/701894787204251749/favicon.png"
+          type="image/x-icon"/>
+
+    <link rel="canonical" href="https://mailtracc.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="One stop shop for mail tracking needs">
+    <meta name="keywords" content="Mail Track Tracking Software Free Premium Online Shopping Assistant AI Smart">
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/4.4/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>MailTracc</title>
+
+    <style>
+    .container {
+  max-width: 960px;
+}
+
+/*
+ * Custom translucent site header
+ */
+
+.site-header {
+  background-color: rgba(0, 0, 0, .85);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+}
+.site-header a {
+  color: #999;
+  transition: ease-in-out color .15s;
+}
+.site-header a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+/*
+ * Dummy devices (replace them with your own or something else entirely!)
+ */
+
+.product-device {
+  position: absolute;
+  right: 10%;
+  bottom: -30%;
+  width: 300px;
+  height: 540px;
+  background-color: #333;
+  border-radius: 21px;
+  -webkit-transform: rotate(30deg);
+  transform: rotate(30deg);
+}
+
+.product-device::before {
+  position: absolute;
+  top: 10%;
+  right: 10px;
+  bottom: 10%;
+  left: 10px;
+  content: "";
+  background-color: rgba(255, 255, 255, .1);
+  border-radius: 5px;
+}
+
+.product-device-2 {
+  top: -25%;
+  right: auto;
+  bottom: 0;
+  left: 5%;
+  background-color: #e5e5e5;
+}
+
+
+/*
+ * Extra utilities
+ */
+
+.flex-equal > * {
+  -ms-flex: 1;
+  flex: 1;
+}
+@media (min-width: 768px) {
+  .flex-md-equal > * {
+    -ms-flex: 1;
+    flex: 1;
+  }
+}
+
+.overflow-hidden { overflow: hidden; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </style>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD9L8C2D34"></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LD9L8C2D34');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+
+<!--Nav Bar-->
+
+<body>
+<div class="container-fluid">
+
+
+    <div class="row pt-4 mb-5">
+        <div class="col-1">
+        </div>
+        <div class="col-1">
+        </div>
+        <div class="col-1 pt-3 pb-3" align="right">
+            <img src="https://cdn.discordapp.com/attachments/330411242382688266/701891450354401371/Mailtracc_logo_V2_resized.png">
+        </div>
+        <div class="col-1">
+        </div>
+
+        <div class="col-4">
+                <div class="alert alert-info" role="alert">
+Not all features are currently complete.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button>
+    </div>
+        </div>
+
+
+
+        <div class="col-2 align-self-center pl-5 ml-5">
+            {% if user.is_authenticated %}
+            <a href="{% url 'dashboard' %}">Dashboard</a>
+            {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Signup</a>
+            {% endif %}
+        </div>
+        <div class="col-1">
+        </div>
+        <div class="col-1">
+        </div>
+
+    </div>
+
+
+    <div class="row pt-5 pb-3">
+        <div class="col-1">
+        </div>
+        <div class="col-1">
+        </div>
+        <div class="col-4 ml-5 ml-3">
+            <h1>Your online shopping assistant</h1>
+            <h5 class="text-muted">MailTracc is the smart online shopping assistant that notifies you of all your
+                incoming shipments.</h5>
+            <div class="pt-3">
+                <a class="btn btn-primary" href="{% url 'register' %}">Sign Up</a>
+            </div>
+        </div>
+
+
+        <div class="col">
+            <img src="https://cdn.discordapp.com/attachments/330411242382688266/702253289592455238/Demo_1_cropped_475x615.png"
+                 width="auto">
+        </div>
+
+    </div>
+
+
+    <div class="row pt-4">
+        <div class="col-1">
+        </div>
+        <div class="col-1">
+        </div>
+
+        <div class="col-1 pr-5 mr-5">
+            <img src="https://cdn.discordapp.com/attachments/330411242382688266/702253633143832586/Demo_2_186x438.png">
+        </div>
+        <div class="col-6">
+            <div class="container">
+                <div class="row pt-4 pb-3">
+                    <div class="col-1">
+                        <h4 class="text-body">Shipped</h4>
+                    </div>
+                    <div class="col-1">
+
+                    </div>
+                    <div class="col-1">
+
+                    </div>
+                    <div class="col-1">
+
+                    </div>
+                    <div class="col">
+                        <h2>
+                            Your package has arrived
+                        </h2>
+                        <h4 class="text-muted">
+                            MailTracc is with you every step of the way. With email and SMS notifications, always know
+                            when your package is arriving.
+                        </h4>
+                    </div>
+                </div>
+                <div class="row pt-4 pb-5">
+                    <div class="col-2">
+                        <h4 class="text-primary">In Transit</h4>
+                    </div>
+                </div>
+                <div class="row mt-5 pt-4">
+                    <div class="col-1 pt-3 mt-1">
+                        <h4 class="text-success">Delivered</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row pt-4">
+        <div class="col-1">
+        </div>
+        <div class="col-1">
+        </div>
+
+        <div class="col bg-light mt-5">
+
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col">
+                        <h3 class="text-center pt-4">We handle the hard part</h3>
+                    </div>
+
+                </div>
+                <div class="row pt-3">
+                    <div class="col">
+                        <p class="text-center"><img
+                                src="https://cdn.discordapp.com/attachments/620320652955615244/702305795567517816/Demo_3_cropped.png"
+                                width="100%"></p>
+                    </div>
+                </div>
+                <div class="row pt-5">
+                    <div class="col-1">
+                        <img src="https://cdn.discordapp.com/attachments/620320652955615244/702312271598059571/Icon_1.png"
+                             width="50%" class="mr-3">
+
+                    </div>
+                    <div class="col">
+                        <h4>Automatic Tracking</h4>
+                        <h5>MailTracc scans your emails for online orders, then automatically keeps you update to date
+                            on them.</h5>
+                        <p class="text-muted">* MailTracc can be used without linking gmail.</p>
+                    </div>
+                    <div class="col-1">
+                        <img src="https://cdn.discordapp.com/attachments/620320652955615244/702341312560496762/Icon_2.png"
+                             width="70%" class="mr-3">
+                    </div>
+                    <div class="col">
+                        <h4>Live Package Tracking</h4>
+                        <h5>See all your deliveries on a map along with when they are coming. Stay informed with SMS
+                            notifications.</h5>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-1">
+        </div>
+        <div class="col-1">
+            <p></p>
+        </div>
+
+    </div>
+
+    <div class="row pt-4">
+        <div class="col-1">
+        </div>
+        <div class="col-1">
+        </div>
+
+        <div class="col">
+
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col">
+                        <h3 class="text-left pt-4">MailTracc is with you, even after delivery</h3>
+                    </div>
+
+                </div>
+
+
+                <div class="row pt-5">
+
+
+                    <div class="col-6">
+                        <img src="https://cdn.discordapp.com/attachments/330411242382688266/702621715573768203/Demo_4_1_315x600_1.png"
+                             width="70%">
+                    </div>
+                    <div class="col-6">
+
+                        <div class="container">
+
+                            <div class="row">
+                                <div class="col">
+                                    <h4><img
+                                            src="https://cdn.discordapp.com/attachments/620320652955615244/702613855003607120/Icon_3.png"
+                                            width="6%" class="mr-3">Contact Retailers</h4>
+                                    <h5 style="padding-left: 43px;">Got a problem with your order? MailTracc makes
+                                        contacting retailers just a click away.</h5>
+                                </div>
+                            </div>
+
+                            <div class="row pt-5">
+                                <div class="col">
+                                    <h4><img
+                                            src="https://cdn.discordapp.com/attachments/330411242382688266/702618235312537631/Icon_4.png"
+                                            width="5%" class="mr-3">Past Orders</h4>
+
+                                    <h5 style="padding-left: 43px;">See all your past orders in one place. So you know
+                                        what you ordered and when.</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-1">
+        </div>
+        <div class="col-1">
+            <p></p>
+        </div>
+
+    </div>
+
+    <div class="row pt-4">
+        <div class="col-1">
+        </div>
+        <div class="col-1">
+        </div>
+
+        <div class="col  bg-light">
+
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col">
+                        <h3 class="text-center pt-4">We care about privacy</h3>
+                    </div>
+
+                </div>
+
+
+                <div class="row pt-5">
+
+
+                    <div class="col-6 pt-5 mt-5">
+
+                        <div class="container">
+
+                            <div class="row">
+                                <div class="col">
+                                    <h4><img
+                                            src="https://cdn.discordapp.com/attachments/620320652955615244/703002026719838219/Icon_6.png"
+                                            width="6%" class="mr-3">We will never sell your data</h4>
+                                    <h5 style="padding-left: 43px;">We are dedicated to keeping your data secure and
+                                        will only use it to improve your experience.</h5>
+                                </div>
+                            </div>
+
+                            <div class="row pt-5">
+                                <div class="col" style="padding-left: 50px;">
+                                    <a class="btn btn-primary" href="{% url 'privacy' %}">Learn More</a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <img src="https://cdn.discordapp.com/attachments/620320652955615244/702999792971808828/Icon_5.png"
+                             width="100%" class="pl-5 pb-3">
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-1">
+        </div>
+        <div class="col-1">
+            <p></p>
+        </div>
+
+
+    </div>
+
+    <div class="row pt-4">
+        <div class="col-1">
+        </div>
+        <div class="col-1">
+        </div>
+
+        <div class="col">
+
+            <div class="container text-center pt-5 pb-5">
+
+                <h2 class="pb-3">What are you waiting for?</h2>
+                <a class="btn btn-primary" href="{% url 'register' %}">Sign Up Today</a>
+
+
+            </div>
+
+
+        </div>
+        <div class="col-1">
+        </div>
+        <div class="col-1">
+            <p></p>
+        </div>
+
+
+    </div>
+
+</div>
+
+<!--Footer-->
+
+<legend class="border-bottom mb-4"></legend>
+
+
+<footer class="container py-5">
+    <div class="row">
+        <div class="col-12 col-md">
+            <small>MailTracc LLC</small>
+            <small class="d-block mb-3 text-muted">&copy; 2020</small>
+        </div>
+        <div class="col-6 col-md">
+            <h5>Account</h5>
+            <ul class="list-unstyled text-small">
+                <li><a class="text-muted" href="{% url 'dashboard' %}">Dashboard</a></li>
+                <li><a class="text-muted" href="{% url 'billing' %}">Billing</a></li>
+                <li><a class="text-muted" href="{% url 'profile' %}">Profile</a></li>
+            </ul>
+        </div>
+        <div class="col-6 col-md">
+            <h5>Support</h5>
+            <ul class="list-unstyled text-small">
+                <li><a class="text-muted" href="#">FAQs</a></li>
+                <li><a class="text-muted" href="#">Knowledge Base</a></li>
+                <li><a class="text-muted" href="#">Server Status</a></li>
+            </ul>
+        </div>
+        <div class="col-6 col-md">
+            <h5>Legal</h5>
+            <ul class="list-unstyled text-small">
+                <li><a class="text-muted" href="{% url 'privacy' %}">Privacy Policy</a></li>
+                <li><a class="text-muted" href="#">Terms of Service</a></li>
+                <li><a class="text-muted"
+                       href="https://app.termly.io/document/cookie-policy/390931cf-9fe8-4ddf-8d9f-52475bc734d5">Cookies</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+<script src="https://getbootstrap.com/docs/4.4/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm"
+        crossorigin="anonymous"></script>
+<script src="https://gtk1pgxlst25.statuspage.io/embed/script.js"></script>
+
+</body>
+</html>

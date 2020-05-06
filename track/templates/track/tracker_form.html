@@ -1,0 +1,95 @@
+{% extends "users/base.html" %}
+{% block head %}
+
+<title>New Package - MailTracc</title>
+
+{% endblock %}
+
+
+
+
+{% block content %}
+
+<div class="card">
+    <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'dashboard' %}">My Packages</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'trc' %}">New Package</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'billing' %}">Billing</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'profile' %}">Settings</a>
+            </li>
+        </ul>
+    </div>
+    <div class="card-body">
+
+
+        <div class="content-section">
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="">New Package</legend>
+
+
+                    <div id="div_id_name" class="control-group form-group row">
+                        <label for="id_name" class="control-label requiredField col-sm-2 col-form-label">Name:<span
+                                class="asteriskField"></span></label>
+                        <div class="controls col-sm-10">
+                            <input type="text" name="name" maxlength="150"
+                                   class="textinput textInput form-control" required="" id="id_name">
+                        </div>
+                    </div>
+
+                    <div id="div_id_description" class="control-group form-group row">
+                        <label for="id_description" class="control-label requiredField col-sm-2 col-form-label">Description:<span
+                                class="asteriskField"></span> </label>
+                        <div class="controls col-sm-10">
+                            <textarea name="description" cols="40" rows="10" class="textarea form-control " required="" id="id_description" spellcheck="false"></textarea>
+                        </div>
+                    </div>
+
+                    <div id="div_id_tracking_number" class="control-group form-group row">
+                        <label for="id_tracking_number" class="control-label requiredField col-sm-2 col-form-label">Tracking
+                            number:<span
+                                    class="asteriskField"></span> </label>
+                        <div class="controls col-sm-10">
+                            <input type="text" name="tracking_number" maxlength="50"
+                                   class="textinput textInput form-control " required="" id="id_tracking_number">
+                        </div>
+                    </div>
+
+                    <div id="div_id_carrier" class="control-group form-group row">
+                        <label for="id_carrier"
+                               class="control-label requiredField col-sm-2 col-form-label">Carrier:<span
+                                class="asteriskField"></span> </label>
+                        <div class="controls col-sm-10">
+                            <select name="carrier" class="select form-control" required="" id="id_carrier">
+                                <option value="" selected="">---------</option>
+                                <option value="USPS">USPS</option>
+                                <option value="FedEx">FedEx</option>
+                                <option value="UPS">UPS</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </fieldset>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                {{ form.errors }}
+            </form>
+        </div>
+
+
+    </div>
+</div>
+
+
+{% endblock %}

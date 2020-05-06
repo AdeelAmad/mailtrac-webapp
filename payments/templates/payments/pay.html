@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="canonical" href="https://mailtracc.com">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD9L8C2D34"></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LD9L8C2D34');
+
+
+    </script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/4.0/examples/checkout/form-validation.css" rel="stylesheet">
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <style>
+    /**
+* Shows how you can use CSS to style your Element's container.
+*/
+.MyCardElement {
+  height: 40px;
+  padding: 10px 12px;
+  width: 100%;
+  color: #32325d;
+  background-color: white;
+  border: 1px solid transparent;
+  border-radius: 4px;
+
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.MyCardElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.MyCardElement--invalid {
+  border-color: #fa755a;
+}
+
+.MyCardElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance:textfield;
+}
+
+
+
+
+
+
+    </style>
+
+</head>
+
+<body>
+<div class="container">
+    <div class="py-5 text-center">
+        <a href="{% url 'home' %}"><img class="mb-4"
+                                        src="https://cdn.discordapp.com/attachments/330411242382688266/667546464414728192/logo.png"
+                                        alt="" width="200" height="200"></a>
+        <h2>Checkout</h2>
+        <p class="lead">Fill out form and hit submit to subscribe to a premium plan</p>
+    </div>
+
+
+    <div class="row">
+
+
+        <div class="col-md-4 order-md-2 mb-4">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted">Your cart</span>
+                <span class="badge badge-secondary badge-pill">1</span>
+            </h4>
+            <ul class="list-group mb-3">
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">{{ plan_data.membership_type }}</h6>
+                    </div>
+                    <span class="text-muted">{{ plan_data.price }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>Total (USD)</span>
+                    <strong>{{ plan_data.price }}</strong>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="col-md-8 order-md-1">
+
+            <h4 class="mb-3">You are logged in as: {{ user.username }}</h4>
+
+            <div class="row">
+
+
+            </div>
+
+            <div class="mb-3">
+
+            </div>
+
+
+            <div class="row">
+
+            </div>
+
+
+            <hr class="mb-4">
+
+
+            <h4 class="mb-3">Payment Information</h4>
+
+            <div class="d-block my-3">
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <label for="card-num">Credit card number</label>
+                    <div id="card-num" class="MyCardElement">
+                        <!-- Elements will create input elements here -->
+                    </div>
+
+                    <!-- We'll put the error messages in this element -->
+                    <div id="card-errors" role="alert"></div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <!--                    <label for="card-exp">Expiration</label>-->
+                    <!--                    <div id="card-exp" class="MyCardElement">-->
+                    <!--                        &lt;!&ndash; Elements will create input elements here &ndash;&gt;-->
+                    <!--                    </div>-->
+
+                    <!--                    &lt;!&ndash; We'll put the error messages in this element &ndash;&gt;-->
+                    <!--                    <div id="card-errors" role="alert"></div>-->
+                </div>
+
+
+                <div class="col-md-4 mb-3">
+                    <!--                    <label for="card-cvv">CVV</label>-->
+                    <!--                    <div id="card-cvv" class="MyCardElement">-->
+                    <!--                        &lt;!&ndash; Elements will create input elements here &ndash;&gt;-->
+                    <!--                    </div>-->
+
+                    <!--                    &lt;!&ndash; We'll put the error messages in this element &ndash;&gt;-->
+                    <!--                    <div id="card-errors" role="alert"></div>-->
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <!--                    <label for="card-cvv">ZIP Code</label>-->
+                    <!--                    <input type="number" maxlength="5" class="MyCardElement StripeElement StripeElement&#45;&#45;empty">-->
+                </div>
+            </div>
+
+            <hr class="mb-4">
+            <a href="{% url 'billing' %}">
+                <button class="btn btn-primary btn-lg btn-block" type="submit" id="submit-button">Pay</button>
+            </a>
+
+        </div>
+
+
+    </div>
+</div>
+
+
+<script>
+  var stripe = Stripe('pk_test_IVhsj4eGvG1F4rUF02LuIYpv');
+  var elements = stripe.elements();
+
+    // Set up Stripe.js and Elements to use in checkout form
+    var style = {
+      base: {
+        color: "#32325d",
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSmoothing: "antialiased",
+        fontSize: "16px",
+        "::placeholder": {
+          color: "#aab7c4"
+        }
+      },
+      invalid: {
+        color: "#fa755a",
+        iconColor: "#fa755a"
+      }
+    };
+
+<!--    var cardCVV = elements.create('cardCvc');-->
+<!--    cardCVV.mount("#card-cvv");-->
+
+
+
+<!--    var cardExp = elements.create('cardExpiry');-->
+<!--    cardExp.mount("#card-exp");-->
+
+
+    var cardNum = elements.create("card", { style: style });
+    cardNum.mount("#card-num");
+
+    cardNum.addEventListener('change', function(event) {
+      var displayError = document.getElementById('card-errors');
+      if (event.error) {
+        displayError.textContent = event.error.message;
+      } else {
+        displayError.textContent = '';
+      }
+    });
+
+
+    var form = document.getElementById('submit-button');
+    form.addEventListener('click', function(event) {
+        event.preventDefault();
+
+        stripe.createPaymentMethod({
+          type: 'card',
+          card: cardNum,
+          billing_details: {
+            email: '{{ user.email }}',
+          },
+        }).then(function(result) {
+
+            var token = '{{csrf_token}}';
+
+            fetch('/payments/bill', {
+              method: 'post',
+
+              headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': token,
+              },
+
+              body: JSON.stringify({
+                result: result,
+                plan: '{{ plan }}'
+              }),
+
+            });
+
+
+        });
+    });
+
+
+
+
+
+
+
+
+</script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="../../assets/js/vendor/popper.min.js"></script>
+<script src="../../dist/js/bootstrap.min.js"></script>
+<script src="../../assets/js/vendor/holder.min.js"></script>
+
+
+</body>
+</html>

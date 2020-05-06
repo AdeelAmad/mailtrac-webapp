@@ -1,0 +1,77 @@
+{% extends "users/base.html" %}
+{% block head %}
+
+<title>Dashboard - MailTracc</title>
+
+{% endblock %}
+
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'dashboard' %}">My Packages</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'trc' %}">New Package</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'billing' %}">Billing</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'profile' %}">Settings</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="card-body">
+
+
+        <div class="container-fluid">
+            <div>
+                <div class="dropdown float-right col">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        Filter By Status
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="?status=Pre Shipment">Pre Shipment</a>
+                        <a class="dropdown-item" href="?status=In Transit">In Transit</a>
+                        <a class="dropdown-item" href="?status=Out For Delivery">Out For Delivery</a>
+                        <a class="dropdown-item" href="?status=Delivered">Delivered</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <a class="" href="{% url 'dashboard' %}"
+                       style="padding-right: 10px; padding-top: 5px;">Clear
+                        Filter</a>
+                </div>
+            </div>
+
+            <div class="row">
+
+                {% for code in codes %}
+                <div class="col mt-3">
+                    <div class="card" style="">
+                        <div class="card-header">
+                            <h5 class="card-title">{{ code.name }}</h5>
+                            <p class="card-text">{{ code.number }}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">{{ code.status }}</li>
+                        </ul>
+                        <div class="card-body"><{{ code.a }} class="{{ code.mute }}" href="{% url 'tracker-detail' code.id %}">Details
+                        </
+                        {{ code.a }}>
+                        <br>
+                        <a href="/track/{{ code.id }}/delete">Delete</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
