@@ -95,7 +95,7 @@ def email_seach(message, token, token_secret):
         if message_return['payload']['parts'][0]['body']['data'] is not None:
             body = decode_base64(message_return)
     except:
-        print('An error occured')
+        pass
 
     for headers in message_return['payload']['headers']:
         if headers['name'] == 'Subject':
@@ -105,31 +105,17 @@ def email_seach(message, token, token_secret):
                 if number_found == False:
                     results = tracking_search(subject, fedex, usps, ups)
                     if results is not None:
-                        print(results['carrier'])
-                        print(results['tracking_number'])
 
                         result = createTracker(user, results['tracking_number'], results['carrier'], number_found)
 
                         print(result)
 
-                    else:
-                        print('no code in subject')
-
     if number_found == False:
         if body:
             results = tracking_search(body, fedex, usps, ups)
             if results is not None:
-                print(results['carrier'])
-                print(results['tracking_number'])
-
                 result = createTracker(user, results['tracking_number'], results['carrier'], number_found)
-
                 print(result)
-
-            else:
-                print('no code in body')
-        else:
-            print('No body avaliable')
 
 
 
@@ -186,8 +172,8 @@ def createTracker(user, num, car, number_found):
                 carrier=car
             ).to_dict()
 
-            if tracker['status'] == 'pending' or 'unknown':
-                error = 'tracker is too old'
+            if tracker['status'] == 'unknown':
+                error = '{} is too old'.format(num)
                 return error
             else:
 
@@ -195,10 +181,11 @@ def createTracker(user, num, car, number_found):
                            tracking_number=num, carrier=car)
                 track.save()
                 number_found = True
+                print('tracker created')
                 return number_found
 
         except:
-            print('an exception occured')
+            pass
     else:
         error = 'tracker already exists'
         return error
