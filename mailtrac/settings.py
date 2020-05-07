@@ -28,7 +28,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '96i^*rrfot4)gbeohgh4slopks^(q)8@%dje0qz$(&d&w_&cv#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['mailtracc.com', '127.0.0.1', '192.168.86.2', 'www.mailtracc.com',]
 
@@ -171,7 +171,7 @@ EMAIL_USE_TLS = True
 
 
 
-CELERY_BROKER_URL = 'redis://206.189.165.2:6379/0'
+CELERY_BROKER_URL = 'redis://45.77.105.184:6379/0'
 
 CORS_ORIGIN_ALLOW_ALL = True
 
