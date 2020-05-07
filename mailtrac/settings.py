@@ -11,12 +11,12 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-# import sentry_sdk
-# from sentry_sdk.integrations.django import DjangoIntegration
-# from sentry_sdk.integrations.celery import CeleryIntegration
-# from sentry_sdk.integrations.redis import RedisIntegration
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+from sentry_sdk.integrations.celery import CeleryIntegration
+from sentry_sdk.integrations.redis import RedisIntegration
 
-# sentry_sdk.init(release="mailtracc@0.1.4")
+sentry_sdk.init(release="mailtracc@0.1.4")
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -187,11 +187,11 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 1
 
-# sentry_sdk.init(
-#     dsn="https://023e103c7faa475c8b0ef9580cfd1c4d@o388869.ingest.sentry.io/5226268",
-#     integrations=[DjangoIntegration(), CeleryIntegration(), RedisIntegration()],
-#
-#     # If you wish to associate users to errors (assuming you are using
-#     # django.contrib.auth) you may enable sending PII data.
-#     send_default_pii=True
-# )
+sentry_sdk.init(
+    dsn="https://023e103c7faa475c8b0ef9580cfd1c4d@o388869.ingest.sentry.io/5226268",
+    integrations=[DjangoIntegration(), CeleryIntegration(), RedisIntegration()],
+
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True
+)
