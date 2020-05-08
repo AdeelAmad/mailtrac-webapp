@@ -93,7 +93,7 @@ WSGI_APPLICATION = 'mailtrac.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mailtraccdev',
+        'NAME': 'mailtracc',
         'USER': 'dev',
         'PASSWORD': 'dev',
         'HOST': '45.77.105.184',
