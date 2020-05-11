@@ -59,8 +59,7 @@ def scan(token, token_secret):
 def email_seach(message, token, token_secret):
 
 
-    social_token = SocialToken.objects.get(token_secret=token_secret)
-    user = social_token.account.user
+    user = SocialToken.objects.get(token_secret=token_secret).account.user
 
     number_found = False
     creds = None
