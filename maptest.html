@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="maptest.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqnp6pMLMRFay4CsA_EUouQXNSYUlBxDU&callback=initMap"
+            async defer></script>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+
+      #map {
+        height: 50%;
+        width: 50%;
+      }
+
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+
+
+
+
+    </style>
+    <script>
+$(document).ready(function(){
+
+  $("#togglemap").click(function(){
+    $("#map").slideToggle();
+  });
+});
+
+
+    </script>
+</head>
+
+
+<body>
+
+<div id="map" style="display:none;"></div>
+<div>
+    <button id="togglemap" type="button" onclick="changeText()">Show Map</button>
+</div>
+
+</body>
+</html>
