@@ -1,154 +1,36 @@
 {% extends "users/base.html" %}
 {% block head %}
 
+<script>
+var citycoords = [
+      {lat: 37.93414, lng: -121.696744},
+      {lat: 37.739651, lng: -121.425223},
+      {lat: 34.07029, lng: -117.39588},
+    ];
+
+
+
+
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://drive.google.com/u/0/uc?id=11JesvLQ1f26t1NTxWZ9bOBtfljPcAT3b&export=download"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqnp6pMLMRFay4CsA_EUouQXNSYUlBxDU&callback=initMap"
+        async defer></script>
+<link rel="stylesheet" href="https://drive.google.com/u/0/uc?id=1NBQ8dZr3hltfId5oijyZjZ4snbAHfYeR&export=download">
 <title>{{ dataElement.name }} detail - MailTracc</title>
 
-<style>
-    body {
-    color: #000;
-    overflow-x: hidden;
-    height: 100%;
-    background-repeat: no-repeat
-}
-
-.card {
-    z-index: 0;
-    background-color: #ECEFF1;
-    padding-bottom: 20px;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    border-radius: 10px
-}
-
-.top {
-    padding-top: 40px;
-    padding-left: 13% !important;
-    padding-right: 13% !important
-}
-
-#progressbar {
-    margin-bottom: 30px;
-    overflow: hidden;
-    color: #455A64;
-    padding-left: 0px;
-    margin-top: 30px
-}
-
-#progressbar li {
-    list-style-type: none;
-    font-size: 13px;
-    width: 25%;
-    float: left;
-    position: relative;
-    font-weight: 400
-}
-
-#progressbar .step0:before {
-    font-family: FontAwesome;
-    content: "\f10c";
-    color: #fff
-}
-
-#progressbar li:before {
-    width: 40px;
-    height: 40px;
-    line-height: 45px;
-    display: block;
-    font-size: 20px;
-    background: #C5CAE9;
-    border-radius: 50%;
-    margin: auto;
-    padding: 0px
-}
-
-#progressbar li:after {
-    content: '';
-    width: 100%;
-    height: 12px;
-    background: #C5CAE9;
-    position: absolute;
-    left: 0;
-    top: 16px;
-    z-index: -1
-}
-
-#progressbar li:last-child:after {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    position: absolute;
-    left: -50%
-}
-
-#progressbar li:nth-child(2):after,
-#progressbar li:nth-child(3):after {
-    left: -50%
-}
-
-#progressbar li:first-child:after {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    position: absolute;
-    left: 50%
-}
-
-#progressbar li:last-child:after {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px
-}
-
-#progressbar li:first-child:after {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px
-}
-
-#progressbar li.active:before,
-#progressbar li.active:after {
-    background: #651FFF
-}
-
-#progressbar li.active:before {
-    font-family: FontAwesome;
-    content: "\f00c"
-}
-
-.icon {
-    width: 60px;
-    height: 60px;
-    margin-right: 15px
-}
-
-.icon-content {
-    padding-bottom: 20px
-}
-
-@media screen and (max-width: 992px) {
-    .icon-content {
-        width: 50%
-    }
-}
-
-</style>
 {% endblock %}
-
-
-
-
-
-
-
-
-
 
 
 {% block content %}
 <div class="container">
 
     <!--    Status Bar    -->
-
     <div class="row">
 
 
-        <div class="container px-1 px-md-4 py-5 mx-auto">
+        <div class="container px-1 px-md-4 pt-5 mx-auto">
             <div class="card">
                 <div class="row d-flex justify-content-between px-3 top">
                     <div class="d-flex">
@@ -195,10 +77,21 @@
             </div>
         </div>
 
-
     </div>
-    <div class="row px-1 px-md-4">
 
+    <div id="mapcon" class="row px-1 px-md-4" style="height:30rem; width:100%%;">
+        <div id="map"></div>
+    </div>
+
+    <div class="row px-1 px-md-4" style="width:100%%;">
+        <button class="card col" id="togglemap" type="button" onclick="changeText()" style="width: 100%;">Show Map</button>
+    </div>
+
+    <div>
+    </div>
+
+
+    <div class="row px-1 px-md-4">
 
         <div class="card col p">
             <table class="table table-striped">
@@ -222,4 +115,14 @@
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function(){
+
+  $("#togglemap").click(function(){
+    $("#mapcon").slideToggle();
+  });
+});
+
+
+</script>
 {% endblock %}

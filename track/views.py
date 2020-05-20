@@ -1,23 +1,24 @@
 import collections
 from datetime import datetime
-
+import googlemaps
 import pytz
 from geoip import geolite2
 from django.db import transaction
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from twilio.rest import Client
 from django.contrib import messages
 from .models import tracker
 from users import models as umod
 from django.views.generic import ListView, CreateView, DetailView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 import easypost
 
 easypost.api_key = "EZAK38cba7fc98ee4b78904dd204527d47edG82Kaus6jtijlR8fpB5EnA "
 account_sid = 'AC0d8c64f616fe81480e93a4b3f17f27f7'
 auth_token = 'da712819ec5328e2d9b6d09c4d3fb29b'
 client = Client(account_sid, auth_token)
+gmaps = googlemaps.Client(key='AIzaSyAnins1PNSZq-06U9DGskIJkHKKxcJAJQM')
 
 
 def get_client_ip(request):
@@ -139,7 +140,7 @@ class DetailInfo(DetailView):
         dataElement = collections.namedtuple('dataElement',
                                              ['est_deliv_date', 'status', 'carrier', 'tracking_number', 'name',
                                               'shipped', 'transit', 'delivery', 'delivered'])
-        eventElement = collections.namedtuple('eventElement', ['message', 'location', 'date', 'time'])
+        eventElement = collections.namedtuple('eventElement', ['message', 'location', 'date', 'time', 'zip'])
 
         tracker = self.get_object()
 
@@ -215,7 +216,6 @@ class DetailInfo(DetailView):
             if tracker.carrier == 'FedEx':
 
                 date_str = datetime.strptime('20{}-{}-{} {}:{}'.format(year, month, day, hour, minute), "%Y-%m-%d %H:%M")
-                print(date_str)
                 date_str_utc = date_str.replace(tzinfo=pytz.timezone('UTC'))
                 converted = str(date_str_utc.astimezone(pytz.timezone(time_zone)))
 
@@ -226,7 +226,6 @@ class DetailInfo(DetailView):
                 hour = converted[11:13]
                 minute = converted[14:16]
 
-                print('{}/{}/{}, {}:{}'.format(month, day, year, hour, minute))
 
             if int(hour) > 13:
                 hour = int(hour) - 12
@@ -249,8 +248,20 @@ class DetailInfo(DetailView):
             else:
                 location = '{}, {} {}'.format(city, state, country)
 
+            latlong=None
+
+            try:
+                geocode_result = gmaps.geocode(str(item['tracking_location']['city']+item['tracking_location']['state']))
+                lat = geocode_result[0]['geometry']['location']['lat']
+                lng = geocode_result[0]['geometry']['location']['lng']
+                latlong = "{lat: %s, lng: %s}" % (lat, lng)
+                print(latlong)
+            except:
+                pass
+
             events.append(
-                eventElement(item['message'], location, date, time))
+                eventElement(item['message'], location, date, time, latlong))
+
 
         detailList.update({'dataElement': dataElement(est_deliv_date, status, carrier, tracker.tracking_number,
                                                       tracker.name, shipped, transit, delivery, delivered)})
@@ -307,3 +318,8 @@ def sms_hook(request):
         return HttpResponse(status=200)
 
 
+def test(request):
+    context = {}
+
+
+    return render(request, 'track/maptest.html', context)

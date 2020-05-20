@@ -27,6 +27,6 @@ urlpatterns = [
     path('<uuid:pk>/delete/', user_views.DeleteView.as_view(), name='tracker-delete'),
     path('webhook', user_views.sms_hook, name='sms_hook'),
 
-    path()
+    path('test/', user_views.test, name='test')
 
 ]
