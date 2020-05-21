@@ -177,7 +177,7 @@ def createTracker(user, num, car, number_found):
                 return error
             else:
 
-                track = tr(user=user, name='Featues currently in testing', description='Automatically added shipment.',
+                track = tr(user=user, name='Featrue is currently in testing', description='Automatically added shipment.',
                            tracking_number=num, carrier=car)
                 track.save()
                 number_found = True
