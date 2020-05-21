@@ -27,6 +27,15 @@
   gtag('config', 'G-LD9L8C2D34');
 
 
+
+
+
+
+
+
+
+
+
     </script>
 
 
@@ -35,63 +44,57 @@
 <!--Nav Bar-->
 
 <body>
-<div class="container-fluid">
+
+<div class="container">
 
 
-    <div class="row pt-4 mb-5">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mt-3">
+        <img src="https://cdn.discordapp.com/attachments/330411242382688266/701891450354401371/Mailtracc_logo_V2_resized.png"
+             width="50rem" class="navbar-brand">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+                </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
 
+                <li class="nav-item dropdown ml-auto">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ user.username }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a>
+                        <a class="dropdown-item" href="{% url 'profile' %}">Settings</a>
+                    </div>
+                </li>
+                {% else %}
+                <li class="nav-item form-inline">
+                    <a class="nav-link" href="{% url 'register' %}">Signup</a>
+                </li>
+                <li class="nav-item form-inline">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+                {% endif %}
 
-
-
-
-
-
-
-        <div class="col-1">
+            </ul>
         </div>
-        <div class="col-1">
-        </div>
-        <div class="col-1 pt-3 pb-3" align="right">
-            <img src="https://cdn.discordapp.com/attachments/330411242382688266/701891450354401371/Mailtracc_logo_V2_resized.png">
-        </div>
-        <div class="col-1">
-        </div>
-
-        <div class="col-4">
-            <div class="alert alert-info" role="alert">
-                Not all features are currently complete.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        </div>
-
-
-        <div class="col-2 align-self-center pl-5 ml-5">
-            {% if user.is_authenticated %}
-            <a href="{% url 'dashboard' %}">Dashboard</a>
-            {% else %}
-            <a href="{% url 'login' %}">Login</a>
-            <a href="{% url 'register' %}">Signup</a>
-            {% endif %}
-        </div>
-        <div class="col-1">
-        </div>
-        <div class="col-1">
-        </div>
-
-    </div>
-
+    </nav>
 
 
     <div class="row pt-5 pb-3">
-        <div class="col-1">
-        </div>
-        <div class="col-1">
-        </div>
-        <div class="col-4 ml-5 ml-3">
+        <div class="col">
             <h1>Your online shopping assistant</h1>
             <h5 class="text-muted">MailTracc is the smart online shopping assistant that notifies you of all your
                 incoming shipments.</h5>
@@ -103,22 +106,20 @@
 
         <div class="col">
             <img src="https://cdn.discordapp.com/attachments/330411242382688266/702253289592455238/Demo_1_cropped_475x615.png"
-                 width="auto">
+                 width="100%">
         </div>
-
     </div>
 
 
     <div class="row pt-4">
-        <div class="col-1">
-        </div>
-        <div class="col-1">
-        </div>
 
-        <div class="col-1 pr-5 mr-5">
+        <div class="col-lg-2">
             <img src="https://cdn.discordapp.com/attachments/330411242382688266/702253633143832586/Demo_2_186x438.png">
         </div>
-        <div class="col-6">
+
+
+        <div class="col">
+
             <div class="container">
                 <div class="row pt-4 pb-3">
                     <div class="col-1">
@@ -154,26 +155,19 @@
                     </div>
                 </div>
             </div>
+
         </div>
+
     </div>
 
 
     <div class="row pt-4">
-        <div class="col-1">
-        </div>
-        <div class="col-1">
-        </div>
-
         <div class="col bg-light mt-5">
-
             <div class="container">
-
                 <div class="row">
-
                     <div class="col">
                         <h3 class="text-center pt-4">We handle the hard part</h3>
                     </div>
-
                 </div>
                 <div class="row pt-3">
                     <div class="col">
@@ -185,7 +179,7 @@
                 <div class="row pt-5">
                     <div class="col-1">
                         <img src="https://cdn.discordapp.com/attachments/620320652955615244/702312271598059571/Icon_1.png"
-                             width="50%" class="mr-3">
+                             width="25rem" class="mr-3">
 
                     </div>
                     <div class="col">
@@ -196,7 +190,7 @@
                     </div>
                     <div class="col-1">
                         <img src="https://cdn.discordapp.com/attachments/620320652955615244/702341312560496762/Icon_2.png"
-                             width="70%" class="mr-3">
+                             width="35rem" class="mr-3">
                     </div>
                     <div class="col">
                         <h4>Live Package Tracking</h4>
@@ -205,25 +199,11 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
-        <div class="col-1">
-        </div>
-        <div class="col-1">
-            <p></p>
-        </div>
-
     </div>
 
     <div class="row pt-4">
-        <div class="col-1">
-        </div>
-        <div class="col-1">
-        </div>
-
         <div class="col">
-
             <div class="container">
 
                 <div class="row">
@@ -235,112 +215,85 @@
                 </div>
 
 
-                <div class="row pt-5">
+                <div class="row pt-3">
 
 
-                    <div class="col-6">
+                    <div class="col-lg-5 col-sm-4">
                         <img src="https://cdn.discordapp.com/attachments/330411242382688266/702621715573768203/Demo_4_1_315x600_1.png"
-                             width="70%">
+                             width="100%">
                     </div>
-                    <div class="col-6">
 
-                        <div class="container">
+                    <div class="col">
+                        <div class="container mt-5 ml-5">
+                            <div class="row pt-5">
+                                <div class="col-1">
+                                    <img src="https://cdn.discordapp.com/attachments/620320652955615244/702613855003607120/Icon_3.png"
+                                         width="30rem" class="mr-3">
 
-                            <div class="row">
+                                </div>
                                 <div class="col">
-                                    <h4><img
-                                            src="https://cdn.discordapp.com/attachments/620320652955615244/702613855003607120/Icon_3.png"
-                                            width="6%" class="mr-3">Contact Retailers</h4>
-                                    <h5 style="padding-left: 43px;">Got a problem with your order? MailTracc makes
+                                    <h4>Contact Retailers</h4>
+                                    <h5>Got a problem with your order? MailTracc makes
                                         contacting retailers just a click away.</h5>
                                 </div>
                             </div>
-
                             <div class="row pt-5">
+                                <div class="col-1">
+                                    <img src="https://cdn.discordapp.com/attachments/330411242382688266/702618235312537631/Icon_4.png"
+                                         width="30rem" class="mr-3">
+                                </div>
                                 <div class="col">
-                                    <h4><img
-                                            src="https://cdn.discordapp.com/attachments/330411242382688266/702618235312537631/Icon_4.png"
-                                            width="5%" class="mr-3">Past Orders</h4>
-
-                                    <h5 style="padding-left: 43px;">See all your past orders in one place. So you know
+                                    <h4>Past Orders</h4>
+                                    <h5>See all your past orders in one place. So you know
                                         what you ordered and when.</h5>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-
-
-        </div>
-        <div class="col-1">
-        </div>
-        <div class="col-1">
-            <p></p>
         </div>
 
-    </div>
-
-    <div class="row pt-4">
-        <div class="col-1">
-        </div>
-        <div class="col-1">
-        </div>
-
-        <div class="col  bg-light">
-
-            <div class="container">
-
-                <div class="row">
-
-                    <div class="col">
-                        <h3 class="text-center pt-4">We care about privacy</h3>
-                    </div>
-
-                </div>
-
-
-                <div class="row pt-5">
-
-
-                    <div class="col-6 pt-5 mt-5">
-
-                        <div class="container">
-
-                            <div class="row">
-                                <div class="col">
-                                    <h4><img
-                                            src="https://cdn.discordapp.com/attachments/620320652955615244/703002026719838219/Icon_6.png"
-                                            width="6%" class="mr-3">We will never sell your data</h4>
-                                    <h5 style="padding-left: 43px;">We are dedicated to keeping your data secure and
-                                        will only use it to improve your experience.</h5>
-                                </div>
-                            </div>
-
-                            <div class="row pt-5">
-                                <div class="col" style="padding-left: 50px;">
-                                    <a class="btn btn-primary" href="{% url 'privacy' %}">Learn More</a>
-
-                                </div>
-                            </div>
+        <div class="row pt-4">
+            <div class="col bg-light">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <h3 class="text-center pt-4">We care about privacy</h3>
                         </div>
                     </div>
 
-                    <div class="col-6">
-                        <img src="https://cdn.discordapp.com/attachments/620320652955615244/702999792971808828/Icon_5.png"
-                             width="100%" class="pl-5 pb-3">
+
+                    <div class="row mt-5">
+                        <div class="col pt-5 mt-5">
+
+                            <div class="container">
+
+                                <div class="row">
+                                    <div class="col-1">
+                                        <img src="https://cdn.discordapp.com/attachments/620320652955615244/703002026719838219/Icon_6.png"
+                                             width="35rem" class="mr-3">
+                                    </div>
+                                    <div class="col">
+                                        <h4>We will never sell your data</h4>
+                                        <h5>We are dedicated to keeping your data secure and
+                                            will only use it to improve your experience.</h5>
+                                        <a class="btn btn-primary mt-5" href="{% url 'privacy' %}">Learn More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <img src="https://cdn.discordapp.com/attachments/620320652955615244/702999792971808828/Icon_5.png"
+                                 width="500rem" class="pb-3">
+                        </div>
+
                     </div>
-
                 </div>
+
+
             </div>
-
-
-        </div>
-        <div class="col-1">
-        </div>
-        <div class="col-1">
-            <p></p>
         </div>
 
 
@@ -429,26 +382,24 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
 </script>
 <script src="https://getbootstrap.com/docs/4.4/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm"
         crossorigin="anonymous"></script>
 <script src="https://gtk1pgxlst25.statuspage.io/embed/script.js"></script>
-
 <script>
 	var beamer_config = {
 		product_id : "SzZYGyZV22328" //DO NOT CHANGE: This is your product code on Beamer
 	};
+
+
+
+
+
+
+
+
+
 
 </script>
 <script type="text/javascript" src="https://app.getbeamer.com/js/beamer-embed.js" defer="defer"></script>
