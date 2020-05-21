@@ -3,13 +3,12 @@
 
 <script>
 var citycoords = [
-      {lat: 37.93414, lng: -121.696744},
-      {lat: 37.739651, lng: -121.425223},
-      {lat: 34.07029, lng: -117.39588},
+    {% for e in events %}
+    {% if e != '' %}
+    {{ e.zip }}
+    {% endif %}
+    {% endfor %}
     ];
-
-
-
 
 </script>
 
@@ -79,12 +78,12 @@ var citycoords = [
 
     </div>
 
-    <div id="mapcon" class="row px-1 px-md-4" style="height:30rem; width:100%%;">
+    <div id="mapcon" class="row px-1 px-md-4" style="height:30rem; width:100%%; display: none;">
         <div id="map"></div>
     </div>
 
     <div class="row px-1 px-md-4" style="width:100%%;">
-        <button class="card col" id="togglemap" type="button" onclick="changeText()" style="width: 100%;">Show Map</button>
+        <button class="btn btn-outline-success mt-2" id="togglemap" type="button" onclick="changeText()" style="width: 100%; text-align: center;">Show Map</button>
     </div>
 
     <div>
@@ -122,6 +121,7 @@ $(document).ready(function(){
     $("#mapcon").slideToggle();
   });
 });
+
 
 
 </script>

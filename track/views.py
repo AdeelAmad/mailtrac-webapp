@@ -248,13 +248,13 @@ class DetailInfo(DetailView):
             else:
                 location = '{}, {} {}'.format(city, state, country)
 
-            latlong=None
+            latlong = ''
 
             try:
                 geocode_result = gmaps.geocode(str(item['tracking_location']['city']+item['tracking_location']['state']))
                 lat = geocode_result[0]['geometry']['location']['lat']
                 lng = geocode_result[0]['geometry']['location']['lng']
-                latlong = "{lat: %s, lng: %s}" % (lat, lng)
+                latlong = "{lat: %s, lng: %s}," % (lat, lng)
                 print(latlong)
             except:
                 pass
