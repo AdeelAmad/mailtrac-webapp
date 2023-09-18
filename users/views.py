@@ -19,9 +19,9 @@ import stripe
 from sentry_sdk import last_event_id
 from .forms import SignUpForm, UserUpdateForm
 
-stripe.api_key = "sk_test_3wr5teXSikqaAdP42VYJiERm"
-account_sid = 'AC0d8c64f616fe81480e93a4b3f17f27f7'
-auth_token = 'da712819ec5328e2d9b6d09c4d3fb29b'
+stripe.api_key = ""
+account_sid = ''
+auth_token = ''
 client = Client(account_sid, auth_token)
 
 def prsent(request):
@@ -112,7 +112,7 @@ def activation_sent_view(request):
         try:
 
             verification_check = client.verify \
-                .services('VAdd3709671c61d204fc5847f31e039f77') \
+                .services('') \
                 .verification_checks \
                 .create(to=phonenumber, code=code)
 
@@ -136,7 +136,7 @@ def activation_sent_view(request):
         if profile.signup_confirmation == False:
 
             verification = client.verify \
-                .services('VAdd3709671c61d204fc5847f31e039f77') \
+                .services('') \
                 .verifications \
                 .create(to=phonenumber, channel='sms')
 
