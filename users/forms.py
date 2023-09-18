@@ -6,8 +6,8 @@ from phonenumber_field.modelfields import PhoneNumberField
 from twilio.rest import Client
 from .models import profile
 
-account_sid = 'AC0d8c64f616fe81480e93a4b3f17f27f7'
-auth_token = 'da712819ec5328e2d9b6d09c4d3fb29b'
+account_sid = ''
+auth_token = ''
 client = Client(account_sid, auth_token)
 from users.models import profile
 
