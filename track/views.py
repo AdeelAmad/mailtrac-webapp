@@ -14,9 +14,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import redirect
 import easypost
 
-easypost.api_key = "EZAK38cba7fc98ee4b78904dd204527d47edG82Kaus6jtijlR8fpB5EnA "
-account_sid = 'AC0d8c64f616fe81480e93a4b3f17f27f7'
-auth_token = 'da712819ec5328e2d9b6d09c4d3fb29b'
+easypost.api_key = " "
+account_sid = ''
+auth_token = ''
 client = Client(account_sid, auth_token)
 
 
