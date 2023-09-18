@@ -12,7 +12,7 @@ from users import models
 from . import models as pmods
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
-endpoint_secret = 'whsec_ltFQE1US2SRRLoJu1G1KvtZ6re3UDtCB'
+endpoint_secret = ''
 
 
 def handle_checkout_session(session):
