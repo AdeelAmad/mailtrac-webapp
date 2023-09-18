@@ -8,9 +8,9 @@ from payments import models as pmodels
 import stripe
 from twilio.rest import Client
 
-stripe.api_key = "sk_test_3wr5teXSikqaAdP42VYJiERm"
-account_sid = 'AC0d8c64f616fe81480e93a4b3f17f27f7'
-auth_token = 'da712819ec5328e2d9b6d09c4d3fb29b'
+stripe.api_key = ""
+account_sid = ''
+auth_token = ''
 client = Client(account_sid, auth_token)
 
 
