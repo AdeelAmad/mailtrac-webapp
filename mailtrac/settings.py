@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '96i^*rrfot4)gbeohgh4slopks^(q)8@%dje0qz$(&d&w_&cv#'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -96,7 +96,7 @@ DATABASES = {
         'NAME': 'mailtracc',
         'USER': 'dev',
         'PASSWORD': 'dev',
-        'HOST': '45.77.105.184',
+        'HOST': '',
         'PORT': '',
     }
 }
@@ -154,24 +154,6 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-STRIPE_SECRET_KEY = 'sk_test_3wr5teXSikqaAdP42VYJiERm'
-STRIPE_PUBLISHABLE_KEY = 'pk_test_IVhsj4eGvG1F4rUF02LuIYpv'
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-SENDGRID_API_KEY = "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"
-
-
-
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-
-
-
-CELERY_BROKER_URL = 'redis://45.77.105.184:6379/0'
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -186,10 +168,6 @@ AUTHENTICATION_BACKENDS = (
 )
 
 SITE_ID = 1
-
-sentry_sdk.init(
-    dsn="https://023e103c7faa475c8b0ef9580cfd1c4d@o388869.ingest.sentry.io/5226268",
-    integrations=[DjangoIntegration(), CeleryIntegration(), RedisIntegration()],
 
     # If you wish to associate users to errors (assuming you are using
     # django.contrib.auth) you may enable sending PII data.
