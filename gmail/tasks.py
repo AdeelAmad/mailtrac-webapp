@@ -16,7 +16,7 @@ from googleapiclient.discovery import build
 from google.auth.transport.requests import Request
 import easypost
 from track.models import tracker as tr
-easypost.api_key = 'EZAK38cba7fc98ee4b78904dd204527d47edG82Kaus6jtijlR8fpB5EnA'
+easypost.api_key = ''
 
 
 @shared_task
@@ -25,8 +25,8 @@ def scan(token, token_secret):
     creds = None
 
     creds = google.oauth2.credentials.Credentials(
-        client_id='959643497387-nq5plhhj8b0qhipu56muq5l2nirl7q3g.apps.googleusercontent.com',
-        client_secret='pIFJPFJ1DbTqKQzftwagM-9D',
+        client_id='',
+        client_secret='',
         refresh_token=token_secret,
         scopes={
             'profile',
@@ -70,8 +70,8 @@ def email_seach(message, token, token_secret):
     ups = re.compile(r'(1Z ?[0-9A-Z]{3} ?[0-9A-Z]{3} ?[0-9A-Z]{2} ?[0-9A-Z]{4} ?[0-9A-Z]{3} ?[0-9A-Z])')
 
     creds = google.oauth2.credentials.Credentials(
-        client_id='959643497387-nq5plhhj8b0qhipu56muq5l2nirl7q3g.apps.googleusercontent.com',
-        client_secret='pIFJPFJ1DbTqKQzftwagM-9D',
+        client_id='',
+        client_secret='',
         refresh_token=token_secret,
         scopes={
             'profile',
